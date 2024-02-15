@@ -1,7 +1,10 @@
 from django.db import models
 
+from core.models import DatesModel
 
-class ToDo(models.Model):
+
+
+class ToDo(DatesModel):
     
     class Priorities(models.TextChoices):
         LOW = ("Low", "Low")
@@ -13,3 +16,7 @@ class ToDo(models.Model):
     priority = models.CharField(max_length=6, choices=Priorities.choices, default=Priorities.MED)
     time = models.SmallIntegerField(null=True)
     on_time = models.BooleanField(null=True)
+    checked_at = models.DateTimeField(null=True)
+    
+    def __str__(self):
+        return f"{self.title} => Done: {self.checked}"

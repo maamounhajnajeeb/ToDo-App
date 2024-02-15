@@ -9,6 +9,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     full_name = models.CharField(max_length=255, null=False)
     is_active = models.BooleanField(default=False, null=False)
     is_staff = models.BooleanField(default=False, null=False)
+    created_at = models.DateTimeField(null=False, auto_now_add=True)
     
     objects = managers.UserManager
     

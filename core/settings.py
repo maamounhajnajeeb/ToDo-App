@@ -11,8 +11,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = bool(os.environ.get("DEBUG"))
 
-ALLOWED_HOSTS = []
-ALLOWED_HOSTS.extend(os.environ.get("PRODUCTION_HOST", ""))
+ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS.append(str(os.environ.get("PRODUCTION_HOST", "")))
 
 
 # Applications definition
@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # 3rd parth packages
+    'rest_framework_simplejwt',
     'rest_framework',
     'corsheaders',
     
@@ -72,9 +73,19 @@ DATABASES = {
         "PASSWORD": os.environ.get("PGPASS"),
         "NAME": "todo_with_flutter",
         "HOST": os.environ.get("PGHOST"),
-        # "PORT": int(os.environ.get("PGPORT", "")),
-        "PORT": "",
+        "PORT": int(os.environ.get("PGPORT", "")),
     }
+}
+
+# rest framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
 
 # django-cors-headers settings

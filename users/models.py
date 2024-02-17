@@ -11,9 +11,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False, null=False)
     created_at = models.DateTimeField(null=False, auto_now_add=True)
     
-    objects = managers.UserManager
+    objects = managers.UserManager()
     
     USERNAME_FIELD = "email"
     
     def __str__(self) -> str:
         return self.full_name
+    
+    def change_password(self, new_password):
+        self.set_password(new_password)
+        self.save()

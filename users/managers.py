@@ -10,6 +10,8 @@ class UserManager(BaseUserManager):
         if not password:
             raise ValueError("Users must have a password")
         
+        extra_fileds["is_active"] = True 
+        
         user = self.model(email=self.normalize_email(email), **extra_fileds)
         user.set_password(password)
         user.save(using=self._db)

@@ -1,3 +1,4 @@
+from datetime import timedelta
 from dotenv import load_dotenv
 from pathlib import Path
 import os
@@ -86,6 +87,12 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(minutes=60),
+    "ROTATE_REFRESH_TOKENS": True,
 }
 
 # django-cors-headers settings

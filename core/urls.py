@@ -23,4 +23,7 @@ urlpatterns = [
     
     # users app
     path("api/v1/users/", include("users.urls")),
+    
+    # todo app
+    path("api/v1/todo/", include("todo.urls")),
 ]

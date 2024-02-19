@@ -7,4 +7,4 @@ class IsOwner(permissions.BasePermission):
         return super().has_permission(request, view)
     
     def has_object_permission(self, request: Request, view, obj):
-        return True if request.user.id == obj.id else False
+        return True if request.user == obj.due_date.user else False

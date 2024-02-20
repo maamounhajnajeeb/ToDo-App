@@ -48,13 +48,13 @@ class RUDTask(generics.RetrieveUpdateDestroyAPIView):
 @decorators.api_view(["DELETE", ])
 @decorators.permission_classes([permissions.IsAuthenticated, owner_only.IsOwner, ])
 def bulk_delete(req: Request):
-    todo_ids = req.query_params.get("ids")
-    if not todo_ids:
-        return Response({"Error": "attr 'ids' must be provided in the query_params"},
+    todo_ids = req.data.get("ids")
+    if not todo_ids or len(todo_ids) == 0:
+        return Response({"Error": "attr 'ids' must be provided in the request data and it must not be empty"},
                 status=status.HTTP_400_BAD_REQUEST)
     
     todo_ids = catch(todo_ids)
-    counter, not_found = delete_objs(todo_ids, req.user)
+    counter, not_found = delete_objs(todo_ids)
     message = construct_message(todo_ids, not_found, counter)
     
     return Response({"message": message}, status=status.HTTP_200_OK)

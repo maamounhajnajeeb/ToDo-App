@@ -1,11 +1,12 @@
 from . import models
 
 
-def catch(values: str):
-    return values[1:-1].split(",")
+def catch(values: str) -> list[int]:
+    values = values.split(", ")
+    return [int(value) for value in values]
 
 
-def delete_objs(ids, user):
+def delete_objs(ids):
     counter, not_found = 0, []
     
     for todo_id in ids:

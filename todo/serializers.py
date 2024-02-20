@@ -72,3 +72,16 @@ class DateSerializer(serializers.ModelSerializer):
             "id": instance.id, "user": instance.user.full_name
             , "date": instance.date, "tasks": serialized_tasks.data
         }
+
+
+class BulkDeleteSerializer(serializers.Serializer):
+    ids = serializers.JSONField()
+    
+    def validate(self, attrs):
+        return super().validate(attrs)
+    
+    def create(self, validated_data):
+        return super().create(validated_data)
+    
+    def update(self, instance, validated_data):
+        return super().update(instance, validated_data)

@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: todo_app
+    build: .
+    command: gunicorn --env DJANGO_SETTINGS_MODULE=core.settings -c python:core.config.gunicorn_config core.wsgi
+    volumes:
+      - ./:/app:ro
+    ports:
+      - 8000:8000
+    environment:
+      - PGHOST=db
+      - DB_NAME=devdb
+      - PGUSER=Maamoun
+      - PGPASS=sv_gtab101enter
+      - SECRET_KEY=b43bed6bfeb44d4076e3b0ef5d9c10fb23279c71304eb4b180abe34b8bc60e69
+      - DEBUG=True
+      - WEB_RELOAD=true
+    depends_on:
+      - db
+  
+  db: # this name must be the same in DB_HOST
+    container_name: postgres_app
+    image: postgis/postgis:16-3.4-alpine
+    restart: always
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: devdb
+      POSTGRES_USER: Maamoun
+      POSTGRES_PASSWORD: sv_gtab101enter
+    ports:
+      - 5432:5432
+
+volumes:
+  postgres-db:

@@ -33,12 +33,11 @@ INSTALLED_APPS = [
     # local apps
     'todo.apps.TodoConfig',
     'users.apps.UsersConfig',
-    
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -74,7 +73,7 @@ DATABASES = {
         "PASSWORD": os.environ.get("PGPASS"),
         "NAME": "todo_with_flutter",
         "HOST": os.environ.get("PGHOST"),
-        "PORT": int(os.environ.get("PGPORT", "")),
+        "PORT": int(os.environ.get("PGPORT", 5432)),
     }
 }
 
@@ -97,10 +96,12 @@ SIMPLE_JWT = {
 
 # django-cors-headers settings
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "http://localhost:8000"
     ]
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "http://localhost:8000"
     ]
 
 

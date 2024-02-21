@@ -11,6 +11,9 @@ urlpatterns = [
     # RUD task
     path("<int:pk>/", views.RUDTask.as_view(), name="rud_task_api"),
     
+    # search in user task via title
+    path("search/<str:search_term>/", views.search_in_titles, name="search_in_titles_api"),
+    
     # bulk delete
     path("bulk_delete/", views.bulk_delete, name="bulk_delete_api"),
     

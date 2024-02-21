@@ -717,3 +717,63 @@ class SpecificDatesTasksNotAuthenticatedTestCase(APITestCase):
         response = self.client.get(path=url)
         
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+
+class FullTextSearchTesting(APITestCase):
+    def setUp(self) -> None:
+        self.user = Users.objects.create_user(
+            email="maamoun.haj.najeeb@gmail.com", password="17AiGz48rhe", full_name="Maamoun Haj Najeeb")
+        
+        tasks_data = [{
+            "date": "2024-2-21",
+            "tasks": [
+                {
+                    "time": 30,
+                    "piriority": "High",
+                    "title": "building bulk delete view"
+                },
+                {
+                    "time": 90,
+                    "piriority": "Med",
+                    "title": "testing bulk delete view via multiple tests"
+                }
+            ]
+        },
+        {
+            "date": "2024-2-22",
+            "tasks": [
+                {
+                    "time": 30,
+                    "piriority": "High",
+                    "title": "building search api with full text search functionality"
+                },
+                {
+                    "time": 90,
+                    "piriority": "Med",
+                    "title": "testing the search api view"
+                }
+            ]
+        }
+        ]
+        
+        for task in tasks_data:
+            tasks = self.client.post(path=app_url, data=task, format="json"
+                , headers=dict(Authorization=f"Bearer {self.create_access_token()}"))
+    
+    def create_access_token(self):
+        response = self.client.post(
+            path=login_url, data=dict(email="maamoun.haj.najeeb@gmail.com", password="17AiGz48rhe"))
+        
+        return response.json().get("access")
+    
+    def test_full_text_search(self):
+        url = f"{app_url}search/bulk/"
+        response = self.client.get(path=url, headers=dict(Authorization=f"Bearer {self.create_access_token()}"))
+        
+        self.assertEqual(len(response.json()), 2)
+    
+    def test_full_text_search_second(self):
+        url = f"{app_url}search/search/"
+        response = self.client.get(path=url, headers=dict(Authorization=f"Bearer {self.create_access_token()}"))
+        
+        self.assertEqual(len(response.json()), 2)

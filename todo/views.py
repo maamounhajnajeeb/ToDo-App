@@ -1,3 +1,5 @@
+from django.contrib.postgres.search import SearchQuery, SearchVector
+
 from rest_framework import permissions, decorators
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -43,6 +45,18 @@ class RUDTask(generics.RetrieveUpdateDestroyAPIView):
     
     def destroy(self, request, *args, **kwargs):
         return super().destroy(request, *args, **kwargs)
+
+
+@decorators.api_view(["GET", ])
+def search_in_titles(req: Request, search_term: str):
+    user_id = req.user.id
+    queryset = models.ToDo.objects.annotate(
+        search=SearchVector("title")).filter(search=SearchQuery(search_term), due_date__user=user_id)
+    if not queryset.exists():
+        return Response({"Error": "no tasks added similar to this title"}, status=status.HTTP_404_NOT_FOUND)
+    
+    serializer = serializers.ToDoSerializer(queryset, many=True)
+    return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
 @decorators.api_view(["DELETE", ])

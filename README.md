@@ -35,9 +35,9 @@ actually you need to add: SECRET_KEY, ALLOWED_HOSTS and Database Configuaration
 ## Project Features
 The project has two apps: Users app which responsible for authentication and Todo app which responsible for sceduling user task and other CRUD operation.
 
-API hierarchy:
+API hierarchy:</br>
 Users App:</br>
-|_ /api/v1/users/sign_up/</br>
+`|_ /api/v1/users/sign_up/</br>
 |_ /api/v1/users/sign_in/</br>
 |_ /api/v1/users/refresh_token/</br>
 |_ /api/v1/users/<int:user_id>/ (for read, update, delete operations)</br>
@@ -49,4 +49,4 @@ ToDo App:</br>
 |_ /api/v1/todo/bulk_delete/</br>
 |_ /api/v1/todo/user_tasks/</br>
 |_ /api/v1/todo/search/<str:search_term>/ (for searching in the user's tasks via task title)</br>
-|_ /api/v1/todo/user_tasks/<int:year>/<int:month>/<int:day>/ (users tasks on specified date)</br>
+|_ /api/v1/todo/user_tasks/<int:year>/<int:month>/<int:day>/ (users tasks on specified date)</br>`

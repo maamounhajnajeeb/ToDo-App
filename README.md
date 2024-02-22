@@ -53,7 +53,10 @@ ToDo App APIs:</br>
 |- `/api/v1/todo/user_tasks/<int:year>/<int:month>/<int:day>/` (users tasks on specified date)</br>
 
 ## Tools used to deploy
-I use `Docker` to aggregate project requirements in one image and build the container on the production, to be honset, Docker ease a lot of production steps</br>
+I use `Docker` to aggregate project requirements in one image and build the container on the production, to be honset, `Docker` ease a lot of production steps</br>
 I use `Supabase` to get external `PostgreSQL` Database, the actual `Django` application hosted on `Render`</br>
 Mobile application built with `Flutter` and deployed on Google Play</br>
 Web application built with `HTML, CSS, JavaScript` and hosted on `GitHub Pages`.</br>
+
+## LICENSE
+[MIT License](LICENSE)

@@ -1,6 +1,7 @@
 from datetime import timedelta
 from dotenv import load_dotenv
 from pathlib import Path
+import dj_database_url
 import os
 
 # load the environment variables form .env file
@@ -12,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = bool(os.environ.get("DEBUG"))
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ]
 ALLOWED_HOSTS.append(str(os.environ.get("PRODUCTION_HOST", "")))
 
 
@@ -37,7 +38,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # 'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -66,15 +67,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "USER": os.environ.get("PGUSER"),
+#         "PASSWORD": os.environ.get("PGPASS"),
+#         "NAME": os.environ.get("DB_NAME"),
+#         "HOST": os.environ.get("PGHOST"),
+#         "PORT": int(os.environ.get("PGPORT", 5432)),
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        "ENGINE": "django.db.backends.postgresql",
-        "USER": os.environ.get("PGUSER"),
-        "PASSWORD": os.environ.get("PGPASS"),
-        "NAME": "todo_with_flutter",
-        "HOST": os.environ.get("PGHOST"),
-        "PORT": int(os.environ.get("PGPORT", 5432)),
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get("DataBase_URL")
+        , conn_max_age=600
+    )
 }
 
 # rest framework settings
@@ -95,15 +103,13 @@ SIMPLE_JWT = {
 }
 
 # django-cors-headers settings
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:8000"
-    ]
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:8000"
-    ]
+CORS_ALLOWED_ORIGINS = (
+    "http://www.localhost:3000", os.environ.get("cors_headers", "http://localhost:8000"), 
+)
 
+CSRF_TRUSTED_ORIGINS = (
+    "http://www.localhost:3000", os.environ.get("cors_headers", "http://localhost:8000"),
+)
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -137,3 +143,17 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL="users.User"
+
+# Deployment settings
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_SECONDS = 31536000 * 2 # 2 year
+SECURE_SSL_REDIRECT = True
+
+SECURE_REFERRER_POLICY = "strict-origin"
+
+# To support old browsers
+SECURE_BROWSER_XSS_FILTER = True

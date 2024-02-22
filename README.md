@@ -36,17 +36,17 @@ actually you need to add: SECRET_KEY, ALLOWED_HOSTS and Database Configuaration
 The project has two apps: Users app which responsible for authentication and Todo app which responsible for sceduling user task and other CRUD operation.
 
 API hierarchy:
-Users App:
-|_ /api/v1/users/sign_up/
-|_ /api/v1/users/sign_in/
-|_ /api/v1/users/refresh_token/
-|_ /api/v1/users/<int:user_id>/ (for read, update, delete operations) 
-|_ /api/v1/users/validate_current_password/
-|_ /api/v1/users/new_password/
-ToDo App:
-|_ /api/v1/todo/ (to create task)
-|_ /api/v1/todo/<int:task_id>/ (for task read, update, delete operations)
-|_ /api/v1/todo/bulk_delete/
-|_ /api/v1/todo/user_tasks/
-|_ /api/v1/todo/search/<str:search_term>/ (for searching in the user's tasks via task title)
-|_ /api/v1/todo/user_tasks/<int:year>/<int:month>/<int:day>/ (users tasks on specified date)
+Users App:</br>
+|_ /api/v1/users/sign_up/</br>
+|_ /api/v1/users/sign_in/</br>
+|_ /api/v1/users/refresh_token/</br>
+|_ /api/v1/users/<int:user_id>/ (for read, update, delete operations)</br>
+|_ /api/v1/users/validate_current_password/</br>
+|_ /api/v1/users/new_password/</br>
+ToDo App:</br>
+|_ /api/v1/todo/ (to create task)</br>
+|_ /api/v1/todo/<int:task_id>/ (for task read, update, delete operations)</br>
+|_ /api/v1/todo/bulk_delete/</br>
+|_ /api/v1/todo/user_tasks/</br>
+|_ /api/v1/todo/search/<str:search_term>/ (for searching in the user's tasks via task title)</br>
+|_ /api/v1/todo/user_tasks/<int:year>/<int:month>/<int:day>/ (users tasks on specified date)</br>

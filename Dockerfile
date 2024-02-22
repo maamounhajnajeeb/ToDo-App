@@ -37,4 +37,4 @@ USER appuser
 
 EXPOSE 8000
 
-# ENTRYPOINT ["/bin/sh", "-c" , "python manage.py migrate"]
+ENTRYPOINT ["/bin/sh", "-c" , "python manage.py migrate && gunicorn --env DJANGO_SETTINGS_MODULE=core.settings -c python:core.config.gunicorn_config core.wsgi"]

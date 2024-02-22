@@ -37,16 +37,16 @@ The project has two apps: Users app which responsible for authentication and Tod
 
 API hierarchy:</br>
 Users App:</br>
-|_ /api/v1/users/sign_up/</br>
-|_ /api/v1/users/sign_in/</br>
-|_ /api/v1/users/refresh_token/</br>
-|_ /api/v1/users/<int:user_id>/ (for read, update, delete operations)</br>
-|_ /api/v1/users/validate_current_password/</br>
-|_ /api/v1/users/new_password/</br>
+|_ `/api/v1/users/sign_up/`</br>
+|_ `/api/v1/users/sign_in/`</br>
+|_ `/api/v1/users/refresh_token/`</br>
+|_ `/api/v1/users/<int:user_id>/` (for read, update, delete operations)</br>
+|_ `/api/v1/users/validate_current_password/`</br>
+|_ `/api/v1/users/new_password/`</br>
 ToDo App:</br>
-|_ /api/v1/todo/ (to create task)</br>
-|_ /api/v1/todo/<int:task_id>/ (for task read, update, delete operations)</br>
-|_ /api/v1/todo/bulk_delete/</br>
-|_ /api/v1/todo/user_tasks/</br>
-|_ /api/v1/todo/search/<str:search_term>/ (for searching in the user's tasks via task title)</br>
-|_ /api/v1/todo/user_tasks/<int:year>/<int:month>/<int:day>/ (users tasks on specified date)</br>
+|_ `/api/v1/todo/` (to create task)</br>
+|_ `/api/v1/todo/<int:task_id>/` (for task read, update, delete operations)</br>
+|_ `/api/v1/todo/bulk_delete/`</br>
+|_ `/api/v1/todo/user_tasks/`</br>
+|-- `/api/v1/todo/search/<str:search_term>/` (for searching in the user's tasks via task title)</br>
+|_ `/api/v1/todo/user_tasks/<int:year>/<int:month>/<int:day>/` (users tasks on specified date)</br>

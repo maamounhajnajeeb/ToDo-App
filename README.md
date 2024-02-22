@@ -28,15 +28,15 @@ actually you need to add: SECRET_KEY, ALLOWED_HOSTS and Database Configuaration
 
 ## Website & docs
 - Check Backend API docs from here: 
-- Web app:
-- Mobile app:
+- Web app: 
+- Mobile app: 
 - Mobile app source code:
 
 ## Project Features
 The project has two apps: Users app which responsible for authentication and Todo app which responsible for sceduling user task and other CRUD operation.
 
 API hierarchy:</br>
-Users App:</br>
+Users App APIs:</br>
 |- `/api/v1/users/sign_up/`</br>
 |- `/api/v1/users/sign_in/`</br>
 |- `/api/v1/users/refresh_token/`</br>
@@ -44,10 +44,17 @@ Users App:</br>
 |- `/api/v1/users/validate_current_password/`</br>
 |- `/api/v1/users/new_password/`</br>
 
-ToDo App:</br>
+ToDo App APIs:</br>
 |- `/api/v1/todo/` (to create task)</br>
 |- `/api/v1/todo/<int:task_id>/` (for task read, update, delete operations)</br>
 |- `/api/v1/todo/bulk_delete/`</br>
 |- `/api/v1/todo/user_tasks/`</br>
 |- `/api/v1/todo/search/<str:search_term>/` (for searching in the user's tasks via task title)</br>
 |- `/api/v1/todo/user_tasks/<int:year>/<int:month>/<int:day>/` (users tasks on specified date)</br>
+
+## Tools used to deploy
+I use Docker to aggregate project requirements in one image and build the project requirements container on the production</br>
+I use Supabase to get external PostgreSQL Database, the actual web application hosted on render</br>
+Mobile application built with flutter and deployed on Google Play</br>
+Web application built with HTML, CSS, JavaScript and hosted on GitHub Pages.</br>
+

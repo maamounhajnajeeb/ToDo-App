@@ -2,24 +2,24 @@
 It's an API to schedule your tasks throught your life.
 
 ## Motivation
-As a Developer who wakes up at 5 A.M. every morning and has tons of tasks needed to be done, you really need a tool that simplifies sceduling daily, weekly and monthly goals, and that's what I did.
+As a Developer who wakes up at 5 A.M. every morning and has tons of tasks needed to be done, you really need a tool that simplifies scheduling daily, weekly and monthly goals, and that's what I did.
 A simple ToDo RestAPI Django app with robust features.
 
 ## Cloning this project
 Initially, you need python 3.10 or higher installed on your local machine, then:
-- open a folder and build virtual environment within it via these commands:
+- Open a folder and build virtual environment within it via these commands:
 1. `virtualenv .venv`
 2. `.venv\scripts\activate` for windows</br>
-(if you are on mac or linux do this instead:
+(if you user mac or linux, do this instead:
 `source .venv/bin/activate`)
-- next, clone the repo:</br>
+- Next, clone the repo:</br>
 `git clone https://github.com/maamounhajnajeeb/ToDo-App.git`
-- now it's dependencies' time:</br>
+- Now it's dependencies' time:</br>
 `pip install -r requirements.txt`</br>
 here  you have to wait for some time until the dependencies installed suucessfully</br>
 actually the dependencies aren't that much (you can check them form **requirements.txt** file)
-- write the desired environment variables. Actually, you need to add: SECRET_KEY, ALLOWED_HOSTS and Database Configuaration
-- after that, write Django magic commands:</br>
+- Write the desired environment variables. Actually, you need to add: SECRET_KEY, ALLOWED_HOSTS and Database Configuaration
+- After that, write Django magic commands:</br>
 `python manage.py migrate`</br>
 `python manage.py runserver`</br>
 **Note**: there's gunicorn dependecy in the requirements, but it's for production not development.
@@ -31,7 +31,7 @@ actually the dependencies aren't that much (you can check them form **requiremen
 - Mobile app source code:
 
 ## Project Features
-The project has two apps: Users app which is responsible for authentication, and Todo app which is responsible for sceduling user tasks and other CRUD operations.
+The project has two apps: Users app which is responsible for authentication, and Todo app which is responsible for scheduling user tasks and other CRUD operations.
 
 API hierarchy:</br>
 Users App APIs:</br>

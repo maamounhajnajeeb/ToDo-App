@@ -1,5 +1,5 @@
 # ToDo RestAPI
-It's an API to schedule your tasks throught your life.
+It's an API to schedule your tasks throughout your life.
 
 ## Motivation
 As a Developer who wakes up at 5 A.M. every morning and has tons of tasks needed to be done, you really need a tool that simplifies scheduling daily, weekly and monthly goals, and that's what I did.

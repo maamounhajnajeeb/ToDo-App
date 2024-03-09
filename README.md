@@ -1,9 +1,9 @@
-# ToDo RestAPI
+# To-Do RestAPI
 It's an API to schedule your tasks throughout your life.
 
 ## Motivation
 As a Developer who wakes up at 5 A.M. every morning and has tons of tasks needed to be done, you really need a tool that simplifies scheduling daily, weekly and monthly goals, and that's what I did.
-A simple ToDo RestAPI Django app with robust features.
+A simple To-Do RestAPI Django app with robust features.
 
 ## Cloning this project
 Initially, you need python 3.10 or higher installed on your local machine, then:
